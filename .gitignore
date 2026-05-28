@@ -1,0 +1,13 @@
+.composer-cache/
+.npm-cache/
+backend/.env
+backend/vendor/
+frontend/.env.local
+frontend/node_modules/
+frontend/dist/
+frontend/vite-dev.*.log
+backend/writable/cache/
+backend/writable/debugbar/
+backend/writable/logs/
+backend/writable/session/
+backend/writable/uploads/

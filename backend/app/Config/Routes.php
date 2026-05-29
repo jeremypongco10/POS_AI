@@ -1,4 +1,12 @@
 <?php
+$routes->resource('api/currency', [
+    'controller' => 'Api\Currency',
+    'placeholder' => '(:num)'
+]);
+$routes->resource('api/tax', [
+    'controller' => 'Api\Tax',
+    'placeholder' => '(:num)'
+]);
 $routes->resource('api/branchstores', [
     'controller' => 'Api\BranchStore',
     'placeholder' => '(:num)'

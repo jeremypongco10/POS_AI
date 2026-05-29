@@ -7,7 +7,7 @@ class StoreModel extends Model
 {
     protected $table      = 'tblstore';
     protected $primaryKey = 'storeid';
-    protected $allowedFields = ['name', 'address', 'contact_number', 'email', 'inactive', 'created_at', 'updated_at'];
+    protected $allowedFields = ['name', 'address', 'contact_number', 'email', 'currencyid', 'taxid', 'inactive', 'created_at', 'updated_at'];
     protected $returnType = 'array';
     protected $useTimestamps = true;
 
@@ -16,6 +16,8 @@ class StoreModel extends Model
         'address' => 'permit_empty|max_length[255]',
         'contact_number' => 'permit_empty|max_length[50]',
         'email' => 'permit_empty|valid_email|max_length[100]',
+        'currencyid' => 'required|is_natural_no_zero|is_not_unique[tblcurrency.currencyid]',
+        'taxid' => 'required|is_natural_no_zero|is_not_unique[tbltax.taxid]',
         'inactive' => 'in_list[0,1]',
         'storeid' => 'permit_empty', // Needed for update unique validation
     ];
@@ -36,6 +38,16 @@ class StoreModel extends Model
         ],
         'address' => [
             'max_length' => 'Address must not exceed 255 characters.'
+        ],
+        'currencyid' => [
+            'required' => 'Currency is required.',
+            'is_natural_no_zero' => 'Please select a valid currency.',
+            'is_not_unique' => 'Selected currency does not exist.'
+        ],
+        'taxid' => [
+            'required' => 'Tax is required.',
+            'is_natural_no_zero' => 'Please select a valid tax.',
+            'is_not_unique' => 'Selected tax does not exist.'
         ],
         'inactive' => [
             'in_list' => 'Status must be Active or Inactive.'
